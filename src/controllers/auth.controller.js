@@ -23,7 +23,7 @@ export const registerUser = async (req, res)=>{
             password: hashed
         })
 
-        const token = generateToken(user_.id)
+        const token = generateToken(user._id)
 
         await sendVerificationEmail(email, token)
 
@@ -84,7 +84,7 @@ export const loginUser = async (req,res)=>{
 export const getProfle = async (req,res)=>{
     try{
         const user = await User.findById(req.user).select("-password")
-        req.json(user)
+        res.json(user)
     } catch(error){
         res.status(500).json({error: error.message})
     }
