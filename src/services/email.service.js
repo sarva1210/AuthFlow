@@ -8,6 +8,7 @@ export const sendVerificationEmail = async (email, token)=>{
             pass: process.env.EMAIL_PASS
         }
     })
+    
     const link =`http:localhost:3000/api/auth/verify/${token}`
 
     await transporter.sendMail({
